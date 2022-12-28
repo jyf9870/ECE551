@@ -1,0 +1,191 @@
+#include <assert.h>
+
+#include <cstdlib>
+#include <iostream>
+
+#include "ll.hpp"
+
+class Tester {
+ public:
+  // testing for default constructor is done for you
+  void testDefCtor() {
+    IntList il;
+    assert(il.head == NULL);
+    assert(il.tail == NULL);
+    assert(il.getSize() == 0);
+  }
+  // example of another method you might want to write
+  void testAddFront() {
+    // WRITE ME
+    IntList il;
+    il.addFront(1);
+    //[1]
+
+    assert(il.head != NULL && il.tail != NULL);
+    assert(il.getSize() == 1);
+    assert(il.head == il.tail);
+    assert(il.head->data == 1);
+    assert(il.head->next == NULL);
+    assert(il.head->prev == NULL);
+    assert(il.tail->data == 1);
+    assert(il.tail->next == NULL);
+    assert(il.tail->prev == NULL);
+    IntList::Node * N1 = il.head;
+    il.addFront(2);
+    IntList::Node * N2 = il.head;
+    assert(il.head != NULL);
+    assert(il.tail == N1);
+    assert(il.getSize() == 2);
+    assert(il[0] == 2);
+    assert(il[1] == 1);
+    assert(N1->data == 1);
+    assert(N1->next == NULL);
+    assert(N1->prev == N2);
+    assert(N2->data == 2);
+    assert(N2->next == N1);
+    assert(N2->prev == NULL);
+  }
+  void testAddBack() {
+    // WRITE ME
+    IntList il;
+    il.addBack(1);
+    //[1]
+    assert(il.head != NULL && il.tail != NULL);
+    assert(il.getSize() == 1);
+    assert(il.head == il.tail);
+    assert(il.head->data == 1);
+    assert(il.head->next == NULL);
+    assert(il.head->prev == NULL);
+    assert(il.tail->data == 1);
+    assert(il.tail->next == NULL);
+    assert(il.tail->prev == NULL);
+    IntList::Node * N1 = il.tail;
+    il.addBack(2);
+    IntList::Node * N2 = il.tail;
+    assert(il.head == N1);
+    assert(il.tail != NULL);
+    assert(il.getSize() == 2);
+    assert(il[0] == 1);
+    assert(il[1] == 2);
+    assert(N1->data == 1);
+    assert(N1->next == N2);
+    assert(N1->prev == NULL);
+    assert(N2->data == 2);
+    assert(N2->next == NULL);
+    assert(N2->prev == N1);
+    il.addFront(3);
+    IntList::Node * N3 = il.head;
+    assert(il.head != NULL);
+    assert(il.tail == N2);
+    assert(il.getSize() == 3);
+    assert(il[0] == 3);
+    assert(il[1] == 1);
+    assert(il[2] == 2);
+    assert(N1->data == 1);
+    assert(N1->next == N2);
+    assert(N1->prev == N3);
+    assert(N2->data == 2);
+    assert(N2->next == NULL);
+    assert(N2->prev == N1);
+    assert(N3->data == 3);
+    assert(N3->next == N1);
+    assert(N3->prev == NULL);
+  }
+
+  void testRemove() {
+    // WRITE ME
+    IntList il = IntList();
+    il.addBack(1);
+    //[1]
+    IntList::Node * N1 = il.tail;
+    il.addBack(2);
+    il.addBack(3);
+    IntList::Node * N3 = il.tail;
+    il.addBack(2);
+    IntList::Node * N2 = il.tail;
+    assert(il.remove(0) == false);
+    assert(il.remove(2) == true);
+    assert(il.head == N1);
+    assert(il.tail == N2);
+    assert(il.getSize() == 3);
+    assert(il[0] == 1);
+    assert(il[1] == 3);
+    assert(il[2] == 2);
+    assert(N1->data == 1);
+    assert(N1->next == N3);
+    assert(N1->prev == NULL);
+    assert(N2->data == 2);
+    assert(N2->next == NULL);
+    assert(N2->prev == N3);
+    assert(N3->data == 3);
+    assert(N3->next == N2);
+    assert(N3->prev == N1);
+    assert(il.remove(2) == true);
+    assert(il.head == N1);
+    assert(il.tail == N3);
+    assert(il.getSize() == 2);
+    assert(il[0] == 1);
+    assert(il[1] == 3);
+    assert(N1->data == 1);
+    assert(N1->next == N3);
+    assert(N1->prev == NULL);
+    assert(N3->data == 3);
+    assert(N3->next == NULL);
+    assert(N3->prev == N1);
+    assert(il.remove(1) == true);
+    assert(il.head == N3);
+    assert(il.tail == N3);
+    assert(il.getSize() == 1);
+    assert(il[0] == 3);
+    assert(N3->data == 3);
+    assert(N3->next == NULL);
+    assert(N3->prev == NULL);
+    assert(il.remove(3) == true);
+    assert(il.head == NULL);
+    assert(il.tail == NULL);
+    assert(il.getSize() == 0);
+    assert(il.remove(1) == false);
+  }
+  void testCopy() {
+    IntList * il = new IntList();
+    il->addFront(1);
+    IntList * il_2 = new IntList();
+    assert(il->head != il_2->head);
+    assert(il->tail != il_2->tail);
+    delete il_2;
+    il->addBack(2);
+    IntList * il_3 = new IntList(*il);
+    delete il;
+    il_3->remove(1);
+    delete il_3;
+  }
+  void testAssign() {
+    // many more tester methods
+    IntList * il = new IntList();
+    il->addBack(1);
+    il->addBack(2);
+    IntList * il_2 = new IntList();
+    il_2->addFront(1);
+    il_2->addFront(2);
+    il_2->addFront(3);
+    *il_2 = *il;
+    assert(il_2->getSize() == 2);
+    assert(il->head != il_2->head);
+    assert(il->tail != il_2->tail);
+    assert(il_2->tail->next == NULL);
+    delete il;
+    delete il_2;
+  }
+};
+
+int main(void) {
+  Tester t;
+  t.testDefCtor();
+  t.testAddFront();
+  t.testAddBack();
+  t.testCopy();
+  t.testAssign();
+  t.testRemove();
+  // write calls to your other test methods here
+  return EXIT_SUCCESS;
+}
