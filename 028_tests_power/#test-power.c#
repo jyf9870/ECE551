@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "power.h"
+
+unsigned power(unsigned x, unsigned y);
+
+unsigned powerHelper(unsigned x, unsigned y, unsigned res) {
+  if (y == 0)
+    return res;
+  if (x == 0)
+    return 0;
+  res = res * x;
+  y--;
+  return powerHelper(x, y, res);
+}
+unsigned power_correct(unsigned x, unsigned y) {
+  return powerHelper(x, y, 1);
+}
+void run_check(unsigned x, unsigned y, unsigned expected_ans) {
+  if (expected_ans != power(x, y)) {
+    printf("wrong\n");
+    exit(EXIT_FAILURE);
+  }
+}
+int main() {
+  unsigned a = 0;
+  unsigned b = 0;
+
+  run_check(a, b, power_correct(a, b));
+  a = 0;
+  b = 2;
+  run_check(a, b, power_correct(a, b));
+
+  a = 1;
+  b = 0;
+  run_check(a, b, power_correct(a, b));
+
+  a = 10;
+  b = 2;
+  run_check(a, b, power_correct(a, b));
+
+  a = 10;
+  b = 2000;
+  run_check(a, b, power_correct(a, b));
+
+  a = 0012;
+  b = 20;
+  run_check(a, b, power_correct(a, b));
+
+  return EXIT_SUCCESS;
+}
