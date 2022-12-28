@@ -1,0 +1,23 @@
+#include "story.hpp"
+
+//read the story content from the path
+void Story::readFile() {
+  Story::filePath.append("/");
+  Story::filePath.append("story.txt");
+
+  std::ifstream ifs(Story::filePath.c_str());
+  if (!ifs.is_open()) {
+    error("Failed to open file story.txt");
+  }
+  else {
+    std::string line;
+    while (std::getline(ifs, line)) {
+      //simple check of error, remove the empty line
+      //      if (line.compare("\n") != 0) {
+      Story::lines.push_back(line);
+      // }
+      //std::cout << line << std::endl;
+    }
+  }
+  ifs.close();
+}

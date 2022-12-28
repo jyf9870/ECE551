@@ -1,0 +1,23 @@
+#include <cstdlib>
+#include <cstring>
+#include <exception>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <vector>
+void error(const std::string & errormsg) {
+  std::cerr << errormsg << std::endl;
+  exit(EXIT_FAILURE);
+}
+
+//use the page path and page number to find the relevent page and add them into the general page result
+string findPageContant(string pageNumber, string pagePath) {
+  string result;
+  ifstream ifs(pagePath.c_str());
+  if (!ifs.is_open()) {
+    error("Failed to open page" + pageNumber);
+  }
+  else {
+  }
+  return "";
+}

@@ -1,0 +1,25 @@
+#ifndef _STORY_HPP_
+#define _STORY_HPP_
+#include "page.cpp"
+class Story {
+ private:
+  std::string filePath;
+  std::vector<std::string> lines;
+  std::vector<Page> pages;
+
+ public:
+  Story(std::string filePath) {
+    std::vector<Page> p;
+    pages = p;
+    this->filePath = filePath;
+    std::vector<std::string> lines;
+    this->lines = lines;
+  }
+  Page findPage(int pageNumber);
+  std::vector<std::string> getlines() { return this->lines; }
+  std::string getpath() { return this->filePath; }
+  Story readFile();
+  Story readLines();
+  void print();
+};
+#endif
