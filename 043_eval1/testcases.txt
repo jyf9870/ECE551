@@ -1,0 +1,21 @@
+#error
+printCountries invalid.csv
+printDailyMax population.csv
+printCumulative
+printCumulative invalid.csv
+printCumulative invaild
+printRunningAvg
+printRunningAvg invaild.csv invaild.csv invaild.csv
+printRunningAvg invaild.csv invaild.csv
+printCountries
+printRunningAvg population.csv
+printCountries populationInvaild.csv
+
+
+
+#success
+printCountries population.csv
+printCountries popvaild.csv 
+printDailyMax population.csv daily_small.csv
+printCumulative population.csv daily_small.csv
+printRunningAvg population.csv daily_small.csv
