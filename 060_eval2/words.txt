@@ -1,0 +1,10 @@
+animal:dragon
+animal:walrus
+animal:mouse
+place:caves
+adjective:peculiar
+adjective:scary
+adjective:peaceful
+:
+nothing:
+ 999:tetete
