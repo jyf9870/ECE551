@@ -1,0 +1,11 @@
+Grading at 10/19/2022:17:36:39.814979
+For commit ID 51dd5317694af06e3bdb3f9bcf28dd0d2ad114d5
+Grading at Wed Oct 19 01:36:38 PM EDT 2022
+Attempting to compile:
+rm -f  main.o  point.o points *~
+g++ -c -Wall -Werror -std=gnu++98 -pedantic -ggdb3 main.cpp
+g++ -c -Wall -Werror -std=gnu++98 -pedantic -ggdb3 point.cpp
+g++ -Wall -Werror -std=gnu++98 -pedantic -ggdb3 -o points  main.o  point.o
+Your output matched what we expected
+
+Overall Grade: PASSED
